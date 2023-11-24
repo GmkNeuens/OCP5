@@ -19,6 +19,7 @@ const slides = [
 
 const arrowleft = document.querySelector("#banner .arrow_left");
 const arrowright = document.querySelector("#banner .arrow_right");
+const slidedotscontainer = document.querySelector(".dots");
 
 let cursor = 0;
 
@@ -35,4 +36,11 @@ arrowright.addEventListener("click", () => {
 		cursor = 0;
 	};
 	console.log("Right arrow click, cursor now at "+cursor);
+});
+
+slides.forEach((i) => {
+	const slidedot = document.createElement("span");
+	slidedotscontainer.appendChild(slidedot);
+	slidedot.classList.add("dot");
+	slidedotscontainer.firstElementChild.classList.add("dot_selected");
 });
