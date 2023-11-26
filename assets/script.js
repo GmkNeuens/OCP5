@@ -17,14 +17,34 @@ const slides = [
 	}
 ];
 
+/* Récupération des éléments HTML impliqués dans le carrousel */
 const arrowleft = document.querySelector("#banner .arrow_left");
 const arrowright = document.querySelector("#banner .arrow_right");
 const slidedotscontainer = document.querySelector(".dots");
 const bannerimage = document.querySelector("#banner .banner-img");
 const bannertagLine = document.querySelector("#banner p");
 
+/* Création des dots */
+slides.forEach((i) => {
+	const slidedot = document.createElement("span");
+	slidedotscontainer.appendChild(slidedot);
+	slidedot.classList.add("dot");
+	slidedotscontainer.firstElementChild.classList.add("dot_selected");
+});
+
+/* Modifications de la bannière impliquées dans le carrousel */
+function loadslide(x) {
+	const slidecontent = slides[x];
+	bannerimage.src = `./assets/images/slideshow/${slidecontent.image}`;
+	bannertagLine.innerHTML = slidecontent.tagLine;
+	slidedotscontainer.querySelectorAll(".dot").forEach(slidedot => slidedot.classList.remove("dot_selected"));
+	slidedotscontainer.children[x].classList.add("dot_selected");
+};
+
+/* Définition de l'index de la slide actuelle */
 let cursor = 0;
 
+/* EventListener des clicks flèches gauche et droite */
 arrowleft.addEventListener("click", () => {
 	cursor--;
 	if (cursor < 0) {
@@ -41,18 +61,3 @@ arrowright.addEventListener("click", () => {
 	loadslide(cursor);
 	console.log("Right arrow click, cursor now at "+cursor);
 });
-
-slides.forEach((i) => {
-	const slidedot = document.createElement("span");
-	slidedotscontainer.appendChild(slidedot);
-	slidedot.classList.add("dot");
-	slidedotscontainer.firstElementChild.classList.add("dot_selected");
-});
-
-function loadslide(x) {
-	const slidecontent = slides[x];
-	bannerimage.src = `./assets/images/slideshow/${slidecontent.image}`;
-	bannertagLine.innerHTML = slidecontent.tagLine;
-	slidedotscontainer.querySelectorAll(".dot").forEach(slidedot => slidedot.classList.remove("dot_selected"));
-	slidedotscontainer.children[x].classList.add("dot_selected");
-};
