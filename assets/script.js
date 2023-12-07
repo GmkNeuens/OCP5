@@ -51,7 +51,6 @@ arrowleft.addEventListener("click", () => {
 		cursor = slides.length-1;
 	};
 	loadslide(cursor);
-	console.log("Left arrow click, cursor now at "+cursor);
 });
 arrowright.addEventListener("click", () => {
 	cursor++;
@@ -59,5 +58,4 @@ arrowright.addEventListener("click", () => {
 		cursor = 0;
 	};
 	loadslide(cursor);
-	console.log("Right arrow click, cursor now at "+cursor);
 });
